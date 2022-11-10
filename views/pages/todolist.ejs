@@ -1,0 +1,28 @@
+<%-include("../templates/header.ejs") %>
+    <body>
+        <br>
+        <br>
+        <h3>Tâches</h3>
+        <form action="/create" method="post">
+            <input type="text" name="tache" placeholder="Nouvelle tâche" autofocus required>
+            <input type="submit" value="Ajouter">
+        </form>
+        <br>
+        <br>
+        <ul>
+        <% taches.forEach( (tache, index) => { %>
+            <% if(!tache.terminer) { %>
+            <li> 
+                <%= tache.title %> | <a href="/tache/<%= index %>/terminer">Terminer</a>
+            </li>
+            <% } else{ %>
+            <li>
+                <s><%= tache.title %></s> | <a href="/tache/<%= index %>/supprimer">Supprimer</a>
+            </li>
+            <% } %>
+        <% }); %>
+        </ul>
+        <br>
+    </body>
+
+<%-include("../templates/footer.ejs") %>
