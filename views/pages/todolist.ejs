@@ -1,28 +1,60 @@
+<%#-include("../templates/header.ejs") %>
+<!-- Version 2 -->
+        <!-- <div class="todo-container">
+            <h2>To-Do List</h2>
+            <div class="todo">
+                <form action="/" method="POST" class="todo-header">
+                    <input type="text" name="content">
+                    <button type="submit"><span class="fas fa-plus"></span></button>
+                </form>
+                <ul class="todo-list">
+                    <%# todoTasks.forEach(details => { %>
+                        <li class="todo-list-item">
+                        <div class="todo-list-item-name"><%#= details.content %></div>
+                        <a href="/edit/<%#= details._id %>" class="edit">
+                            <span class="fas fa-edit"></span>
+                        </a>
+                        <a href="/remove/<%#= details._id %>" class="remove">
+                            <span class="fas fa-times"></span>
+                        </a>
+                     </li>
+                    <%# }) %>
+                </ul>
+            </div>
+        </div>
+    </body> -->
+
+<!-- Version 1 -->
 <%-include("../templates/header.ejs") %>
-    <body>
-        <br>
-        <br>
-        <h3>Tâches</h3>
-        <form action="/create" method="post">
-            <input type="text" name="tache" placeholder="Nouvelle tâche" autofocus required>
-            <input type="submit" value="Ajouter">
-        </form>
-        <br>
-        <br>
-        <ul>
-        <% taches.forEach( (tache, index) => { %>
-            <% if(!tache.terminer) { %>
-            <li> 
-                <%= tache.title %> | <a href="/tache/<%= index %>/terminer">Terminer</a>
-            </li>
-            <% } else{ %>
-            <li>
-                <s><%= tache.title %></s> | <a href="/tache/<%= index %>/supprimer">Supprimer</a>
-            </li>
-            <% } %>
-        <% }); %>
-        </ul>
-        <br>
+            <div class="todo-container">
+                <h2>To-Do List</h2>
+                <div class="todo">
+                    <form action="/create" method="post" class="todo-header">
+                        <input type="text" name="tache" autofocus required>
+                        <button type="submit"><span type="submit" class="fas fa-plus"></span></button>
+                    </form>
+                    <ul class="todo-list">
+                        <% taches.forEach( (tache, index) => { %>
+                            <% if(!tache.terminer) { %>
+                                <li class="todo-list-item"> 
+                                    <div class="todo-list-item-name"><%= tache.title %></div>
+                                    <a href="/tache/<%= index %>/terminer" class="edit">      | Rayer la tâche
+                                        <span class="fas fa-edit"></span>
+                                    </a>  
+                                </li>
+                            <% } else{ %>
+                                <li class="todo-list-item">
+                                    <div class="todo-list-item-name"><s><%= tache.title %></s></div>
+                                    <a href="/tache/<%= index %>/supprimer" class="remove">      | Supprimer la tâche
+                                        <span class="fas fa-times"></span>
+                                    </a>
+                                </li>
+                            <% } %>
+                        <% }); %>
+                    </ul>
+                </div>
+            </div>
+        
     </body>
 
-<%-include("../templates/footer.ejs") %>
+    <%#-include("../templates/footer.ejs") %>
